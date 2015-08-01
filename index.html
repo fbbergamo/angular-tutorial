@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="spa">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Widget Factory!</title>
     <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css">
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="app.js"></script>
 
   </head>
   <body>
@@ -50,7 +52,7 @@
                   <div class="widget-icon green pull-left">
                     <i class="fa fa-users"></i>
                   </div>
-                  <div class="title">{5}</div>
+                  <div class="title"> {{4 + 6}}</div>
                   <div class="comment">Users</div>
                 </div>
               </div>
@@ -85,18 +87,10 @@
                         <th>Name</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">1</td>
-                        <td>Joe Bloggs</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">2</td>
-                        <td>Timothy Hernandez</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">3</td>
-                        <td>Joe Bickham</td>
+                    <tbody ng-controller="UsersController as controller">
+                      <tr ng-repeat="user in controller.users">
+                        <td class="text-center">{{user.id}}</td>
+                        <td>{{user.name}}</td>
                       </tr>
                     </tbody>
                   </table>
