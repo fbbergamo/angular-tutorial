@@ -80,14 +80,14 @@
                   <div class="pull-right"><input type="text" class="form-control input-sm"></div>
                 </div>
                 <div class="table-responsive">
-                  <table class="table">
+                  <table class="table" ng-controller="UsersController as controller">
                     <thead>
                       <tr>
                         <th class="text-center">ID</th>
                         <th>Name</th>
                       </tr>
                     </thead>
-                    <tbody ng-controller="UsersController as controller">
+                    <tbody>
                       <tr ng-repeat="user in controller.users">
                         <td class="text-center">{{user.id}}</td>
                         <td>{{user.name}}</td>
@@ -105,7 +105,7 @@
                   <div class="pull-right"><input type="text" class="form-control input-sm"></div>
                 </div>
                 <div class="table-responsive">
-                  <table class="table">
+                  <table class="table" ng-controller="WidgetsController as controller">
                     <thead>
                       <tr>
                         <th class="text-center">ID</th>
@@ -113,13 +113,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="text-center">1</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">2</td>
-                        <td>B</td>
+                      <tr ng-repeat="widget in controller.widgets">
+                        <td class="text-center">{{widget.id}}</td>
+                        <td>{{widget.name}}</td>
                       </tr>
                     </tbody>
                   </table>
