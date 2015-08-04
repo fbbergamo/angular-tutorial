@@ -1,0 +1,68 @@
+
+.row
+  / Widget listing
+  .col-lg-12
+    .widget
+      .widget-header
+        Widgets
+        .pull-right
+          %button.btn.btn-sm.btn-info + Create
+      .table-responsive
+        %table.table
+          %thead
+            %tr
+              %th.text-center ID
+              %th Name
+              %th Color
+              %th Price
+              %th Melts?
+              %th Inventory
+          %tbody
+            %tr
+              %td.text-center 1
+              %td Foo
+              %td red
+              %td $4.99
+              %td yes
+              %td 27
+  / End Widgets
+/ End Row
+%hr/
+/ Create/Edit
+.row
+  / Widget listing
+  .col-lg-12
+    .widget
+      .widget-header Create/Edit Template
+      .widget-body
+        %form.form-horizontal
+          %legend Create Widget
+          / Name
+          .controls
+            Name
+            %input#widget-name.input-medium{:name => "widget-name", :placeholder => "foo-bar", :type => "text"}/
+          / Price
+          .controls
+            .input-prepend
+              Price
+              %span.add-on $
+              %input#widget-price.input-medium{:name => "widget-price", :placeholder => "0.00", :type => "text"}/
+          / Color
+          .controls
+            Color
+            %select#widget-color.input-large{:name => "widget-color"}
+              %option red
+              %option purple
+              %option black
+              %option green
+              %option magenta
+              %option white
+              %option depends on the viewing angle
+          / Melts
+          .controls
+            Melts
+            %input#widget-properties-0{:name => "widget-properties", :type => "checkbox", :value => "melts"}/
+          / Inventory
+          .controls
+            Inventory
+            %input#widget-count.input-small{:name => "widget-count", :placeholder => "#?", :type => "text"}/

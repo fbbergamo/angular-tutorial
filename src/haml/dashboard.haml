@@ -1,0 +1,53 @@
+/ Dashboard Boxes
+.dashboard{"ng-controller" => "DashboardController as dashboardCtrl"}
+  .row
+    .col-lg-3.col-md-6.col-xs-12
+      .widget
+        .widget-header
+          .widget-icon.green.pull-left
+            %i.fa.fa-users
+          .title {{dashboardCtrl.users_counter}}
+          .comment Users
+    .col-lg-3.col-md-6.col-xs-12
+      .widget
+        .widget-header
+          .widget-icon.green.pull-left
+            %i.fa.fa-users
+          .title {{dashboardCtrl.widgets_counter}}
+          .comment Widgets
+  .row
+    / Users listing
+    .col-lg-6
+      .widget
+        .widget-header
+          Users
+          .pull-right
+            %input.form-control.input-sm{:type => "text", "ng-model" => "dashboardCtrl.searchUser"}
+        .table-responsive
+          %table.table
+            %thead
+              %tr
+                %th.text-center ID
+                %th Name
+            %tbody
+              %tr{"ng-repeat" => "user in dashboardCtrl.users | filter:dashboardCtrl.searchUser"}
+                %td.text-center {{user.id}}
+                %td {{user.name}}
+
+    / Widget listing
+    .col-lg-6
+      .widget
+        .widget-header
+          Widgets
+          .pull-right
+            %input.form-control.input-sm{:type => "text", "ng-model" => "dashboardCtrl.searchWidget"}
+        .table-responsive
+          %table.table
+            %thead
+              %tr
+                %th.text-center ID
+                %th Name
+            %tbody
+              %tr{"ng-repeat" => "widget in dashboardCtrl.widgets | filter:dashboardCtrl.searchWidget"}
+                %td.text-center {{widget.id}}
+                %td {{widget.name}}

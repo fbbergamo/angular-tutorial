@@ -1,0 +1,50 @@
+!!!
+%html{:lang => "en", "ng-app" => "spa"}
+  %head
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %title Widget Factory!
+    %link{:href => "./components/bootstrap/dist/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "./components/font-awesome/css/font-awesome.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "./components/rdash-ui/dist/css/rdash.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %script{:src => "./components/angular/angular.js", :type => "text/javascript"}
+    %script{:src => "./components/angular-route/angular-route.js", :type => "text/javascript"}
+    %base{href: "/"}
+    %script{:src => "assets/javascript/app.js", :type => "text/javascript"}
+  %body
+    #page-wrapper.open
+      / Sidebar
+      #sidebar-wrapper
+        %ul.sidebar
+          %li.sidebar-main
+            %a{:href => "#/"}
+              Dashboard
+              %span.menu-icon.fa.fa-tachometer
+          %li.sidebar-title
+            %span NAVIGATION
+          %li.sidebar-list
+            %a{:href => "#/"}
+              Dashboard
+              %span.menu-icon.fa.fa-tachometer
+          %li.sidebar-list
+            %a{:href => "#users"}
+              Users
+              %span.menu-icon.fa.fa-users
+          %li.sidebar-list
+            %a{:href => "#widgets"}
+              Widgets
+              %span.menu-icon.fa.fa-cubes
+        .sidebar-footer.col-xs-12
+          %a{:href => "#", :target => "_blank"} 2015 Red Ventures
+      / End Sidebar
+      #content-wrapper
+        .page-content
+          / Header Bar
+          .row.header.col-xs-12
+            .user.pull-right
+              .item.dropdown
+                %a.dropdown-toggle{:href => "#"}
+                  %img{:alt => "", :src => "img/avatar.jpg"}/
+            .meta
+              .page Dashboard
+              .breadcrumb-links Home / Dashboard
+          %div{ng_view: ""}
