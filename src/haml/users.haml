@@ -1,0 +1,20 @@
+.row
+  .col-lg-12
+    .widget
+      .widget-header
+        Users
+        .pull-right
+          %input.form-control.input-sm{:type => "text", "ng-model" => "searchUser"}/
+      .table-responsive
+        %table.table
+          %thead
+            %tr
+              %th.text-center ID
+              %th Name
+              %th Avatar
+          %tbody
+            %tr{"ng-repeat" => "user in users | filter:searchUser"}
+              %td.text-center {{user.id}}
+              %td {{user.name}}
+              %td
+                %img{"ng-src" => "{{user.gravatar}}"}/

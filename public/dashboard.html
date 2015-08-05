@@ -43,9 +43,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat='user in dashboardCtrl.users | filter:dashboardCtrl.searchUser'>
+              <tr ng-repeat='user in dashboardCtrl.users  | filter:dashboardCtrl.searchUser track by $index'>
                 <td class='text-center'>{{user.id}}</td>
-                <td>{{user.name}}</td>
+                <td>
+                  <a ng-href="{{ path('UserController', { id : user.id }) }}">
+                    {{user.name}}
+                  </a>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -70,9 +74,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat='widget in dashboardCtrl.widgets | filter:dashboardCtrl.searchWidget'>
+              <tr ng-repeat='widget in dashboardCtrl.widgets | filter:dashboardCtrl.searchWidget track by $index'>
                 <td class='text-center'>{{widget.id}}</td>
-                <td>{{widget.name}}</td>
+                <td>
+                  <a ng-href="{{ path('WidgetsController', { id : widget.id }) }}">
+                    {{widget.name}}
+                  </a>
+                </td>
               </tr>
             </tbody>
           </table>

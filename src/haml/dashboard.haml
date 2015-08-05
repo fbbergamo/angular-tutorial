@@ -30,9 +30,11 @@
                 %th.text-center ID
                 %th Name
             %tbody
-              %tr{"ng-repeat" => "user in dashboardCtrl.users | filter:dashboardCtrl.searchUser"}
+              %tr{"ng-repeat" => "user in dashboardCtrl.users  | filter:dashboardCtrl.searchUser track by $index"}
                 %td.text-center {{user.id}}
-                %td {{user.name}}
+                %td
+                  %a{"ng-href" => "{{ path('UserController', { id : user.id }) }}"}
+                    {{user.name}}
 
     / Widget listing
     .col-lg-6
@@ -48,6 +50,8 @@
                 %th.text-center ID
                 %th Name
             %tbody
-              %tr{"ng-repeat" => "widget in dashboardCtrl.widgets | filter:dashboardCtrl.searchWidget"}
+              %tr{"ng-repeat" => "widget in dashboardCtrl.widgets | filter:dashboardCtrl.searchWidget track by $index"}
                 %td.text-center {{widget.id}}
-                %td {{widget.name}}
+                %td
+                  %a{"ng-href" => "{{ path('WidgetsController', { id : widget.id }) }}"}
+                    {{widget.name}}

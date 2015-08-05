@@ -1,0 +1,71 @@
+.widgets{"ng-controller" => "WidgetsController as widgetCtrl"}
+  .row
+    / Widget listing
+    .col-lg-12
+      .widget
+        .widget-header
+          Widgets
+          .pull-right
+            %button.btn.btn-sm.btn-info{"ng-click" => "widgetCtrl.build_create_form()"} + Create
+        .table-responsive
+          %table.table
+            %thead
+              %tr
+                %th.text-center ID
+                %th Name
+                %th Color
+                %th Price
+                %th Melts?
+                %th Inventory
+                %th Update
+            %tbody
+              %tr{"ng-repeat" => "widget in widgetCtrl.widgets track by $index"}
+                %td.text-center {{widget.id}}
+                %td {{widget.name}}
+                %td {{widget.color}}
+                %td {{widget.price}}
+                %td {{widget.melts}}
+                %td {{widget.inventory}}
+                %td
+                  %button.btn.btn-default{"ng-click" => "widgetCtrl.build_update_form(widget)"} Update
+
+  %hr
+  / Create/Edit
+  .row
+    / Widget listing
+    .col-lg-12
+      .widget
+        .widget-header Create or Update
+        .widget-body
+          %form.form-horizontal#form-update-or-create{ "ng-submit" => "widgetCtrl.submit()"}
+            %legend {{widgetCtrl.should_update_or_create}}
+            / Name
+            .form-group
+              %label.col-sm-2.control-label{for: "widget-name" } Name
+              .col-sm-10
+                %input#widget-name.input-medium.form-control{:name => "widget-name", :placeholder => "foo-bar", :type => "text", "ng-model"=>"widgetCtrl.form_widget.name"}
+            / Price
+            .form-group
+              %label.col-sm-2.control-label{for: "widget-price" }Price
+              .col-sm-10
+                .input-group
+                  .input-group-addon $
+                  %input#widget-price.input-medium.form-control{:name => "widget-price", :placeholder => "0.00", :type => "text", "ng-model"=>"widgetCtrl.form_widget.price"}
+            / Color
+            .form-group
+              %label.col-sm-2.control-label{for: "widget-color" }Color
+              .col-sm-10
+                %select#widget-color.input-large.form-control{:name => "widget-color", "ng-model"=>"widgetCtrl.form_widget.color",  "ng-options"=> "color for color in ['red','purple','black','green', 'magenta', 'white', 'depends on the viewing angle']"}
+                  %option{ value: ""}Pick a color
+            / Melts
+            .form-group
+              %label.col-sm-2.control-label{for: "widget-properties-0" }Melts
+              %input#widget-properties-0{:name => "widget-properties", :type => "checkbox", :value => "melts", "ng-model"=>"widgetCtrl.form_widget.melts"}/
+              / Inventory
+            .form-group
+              %label.col-sm-2.control-label{for: "widget-count" }Inventory
+              .col-sm-10
+                %input#widget-count.input-small.form-control{:name => "widget-count", :placeholder => "#?", :type => "text", "ng-model"=>"widgetCtrl.form_widget.inventory"}
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                %button.btn.btn-default Submit
