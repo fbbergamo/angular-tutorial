@@ -13,7 +13,7 @@
               %th Name
               %th Avatar
           %tbody
-            %tr{"ng-repeat" => "user in users | filter:searchUser"}
+            %tr{"ng-repeat" => "user in users | filter:searchUser track by $index"}
               %td.text-center {{user.id}}
               %td {{user.name}}
               %td
