@@ -24,6 +24,10 @@ app.config([
 ]);
 
 app.run(function($route, $rootScope) {
+    $rootScope.route_api = function(path) {
+      return "http://spa.tglrw.com:4000/" + path 
+    };
+
     $rootScope.path = function(controller, params) {
         for (var path in $route.routes) {
             var pathController = $route.routes[path].controller;

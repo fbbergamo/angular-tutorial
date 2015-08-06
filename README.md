@@ -13,3 +13,11 @@ To start the project use:
 2. bundle
 3. npm install
 4. gulp (start server and haml/coffeescript watcher)
+
+
+Todo:
+
+Validations form
+tests
+return result and message ok
+treat error 

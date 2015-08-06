@@ -3,16 +3,16 @@ var app
 
 app = angular.module('spa-users', []);
 
-app.controller('UserController', function($scope, $routeParams, $http) {
-  $http({ method: 'GET', url: 'http://spa.tglrw.com:4000/users/' + $routeParams.id }).
+app.controller('UserController', function($scope, $routeParams, $http, $rootScope) {
+  $http({ method: 'GET', url: $rootScope.route_api('users/' + $routeParams.id) }).
   success(function (data, status, headers, config) {
     $scope.users = [data];
   })
 });
 
-app.controller('UsersController', function($scope, $http) {
+app.controller('UsersController', function($scope, $http, $rootScope) {
   var controller = this
-  $http({ method: 'GET', url: 'http://spa.tglrw.com:4000/users' }).
+  $http({ method: 'GET', url: $rootScope.route_api('users') }).
   success(function (data, status, headers, config) {
     $scope.users = data;
   })

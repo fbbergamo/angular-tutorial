@@ -3,44 +3,50 @@ var app, users, widgets;
 
 app = angular.module('spa-widgets', []);
 
-
-app.controller('WidgetsController', function($scope, $routeParams ,$location, $anchorScroll, $http) {
+app.controller('WidgetsController', function($scope, $routeParams ,$location, $anchorScroll, $http, $rootScope) {
   var controller = this
-  controller.should_update_or_create = "Create Widget"
-  if ($routeParams.id) {
-    $http({ method: 'GET', url: 'http://spa.tglrw.com:4000/widgets/' + $routeParams.id }).
-    success(function (data, status, headers, config) {
-      controller.widgets = [data];
-    });
-    controller.is_show = true;
+
+  this.reset_form = function() {
+    controller.form_widget = {};
+    controller.should_update_or_create = "Create Widget"
   }
-  else {
-    $http({ method: 'GET', url: 'http://spa.tglrw.com:4000/widgets/' }).
-    success(function (data, status, headers, config) {
-      controller.widgets = data;
-    })
-    controller.is_show = false;
+
+  this.load_widgets = function (widget_id) {
+    if (widget_id) {
+      $http({ method: 'GET', url: $rootScope.route_api('widgets/' + widget_id) }).
+      success(function (data, status, headers, config) {
+        controller.widgets = [data];
+      });
+      controller.is_show = true;
+    }
+    else {
+      $http({ method: 'GET', url: $rootScope.route_api('widgets') }).
+      success(function (data, status, headers, config) {
+        controller.widgets = data;
+      })
+      controller.is_show = false;
+    }
   }
-  controller.form_widget = {};
 
   this.submit = function(){
     if (controller.form_widget.id == null) {
-      $http.post('http://spa.tglrw.com:4000/widgets', controller.form_widget).
+      $http.post($rootScope.route_api('widgets'), controller.form_widget).
         then(function(response) {
-          //TODO: reload with a info message add with success
+          controller.load_widgets(null);
           }, function(response) {
             alert("error")
         });
     }
     else {
-      $http.put('http://spa.tglrw.com:4000/widgets/'+  controller.form_widget.id, controller.form_widget).
+      var widget_id = controller.form_widget.id
+      $http.put($rootScope.route_api('widgets/'+  widget_id), controller.form_widget).
         then(function(response) {
-          //TODO: reload with a info message add with success
+          controller.load_widgets(widget_id);
           }, function(response) {
             alert("error")
         });
     }
-    controller.form_widget = {}
+    controller.reset_form();
   };
 
   this.build_update_form = function(widget) {
@@ -53,11 +59,13 @@ app.controller('WidgetsController', function($scope, $routeParams ,$location, $a
   };
 
   this.build_create_form = function() {
-    this.form_widget = {};
-    this.should_update_or_create = "Create Widget";
-    //TODO: check why page is reloading
+    var old = $location.hash();
+    controller.reset_form();
     $location.hash('form-update-or-create');
     $anchorScroll();
     $location.hash(old);
   }
+
+  controller.reset_form();
+  controller.load_widgets($routeParams.id);
 });
