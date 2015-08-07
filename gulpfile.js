@@ -5,6 +5,13 @@ var gulp = require('gulp');
 var haml = require('gulp-ruby-haml');
 var coffee = require('gulp-coffee');
 var connect = require('gulp-connect');
+var s3 = require("gulp-s3");
+
+gulp.task('deploy', function() {
+  var sys=require("sys"), fs=require("fs");
+  aws = JSON.parse(fs.readFileSync('./aws.json'));
+  gulp.src('./public/**').pipe(s3(aws));
+});
 
 gulp.task('haml', function() {
   gulp.src('./src/haml/*.haml').

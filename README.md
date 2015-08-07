@@ -1,6 +1,7 @@
 Angular Tutorial
 
-pre:
+pre-install
+
 1. Ruby 2.0.0 (apt-get install ruby2.0.0)
 2. NodeJS (apt-get install nodejs)
 3. Npm (apt-get install npm)
@@ -20,4 +21,8 @@ Todo:
 Validations form
 tests
 return result and message ok
-treat error 
+treat errors
+
+Example:
+
+http://fbbergamo.s3-website-sa-east-1.amazonaws.com/#/

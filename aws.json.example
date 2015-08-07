@@ -1,0 +1,6 @@
+{
+  "key": "id_aws",
+  "secret": "this_is_secret",
+  "bucket": "bucket_name",
+  "region": "us-east-1"
+}

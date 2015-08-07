@@ -1,0 +1,101 @@
+<div class='widgets' ng-controller='WidgetsController as widgetCtrl'>
+  <div class='row'>
+    <!-- Widget listing -->
+    <div class='col-lg-12'>
+      <div class='widget'>
+        <div class='widget-header'>
+          Widgets
+          <div class='pull-right'>
+            <button class='btn btn-sm btn-info' ng-click='widgetCtrl.build_create_form()'>+ Create</button>
+          </div>
+        </div>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th class='text-center'>ID</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Price</th>
+                <th>Melts?</th>
+                <th>Inventory</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat='widget in widgetCtrl.widgets track by $index'>
+                <td class='text-center'>{{widget.id}}</td>
+                <td>{{widget.name}}</td>
+                <td>{{widget.color}}</td>
+                <td>{{widget.price}}</td>
+                <td>{{widget.melts}}</td>
+                <td>{{widget.inventory}}</td>
+                <td>
+                  <button class='btn btn-default' ng-click='widgetCtrl.build_update_form(widget)'>Update</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <!-- Create/Edit -->
+  <div class='row'>
+    <!-- Widget listing -->
+    <div class='col-lg-12'>
+      <div class='widget'>
+        <div class='widget-header'>Create or Update</div>
+        <div class='widget-body'>
+          <form class='form-horizontal' id='form-update-or-create' ng-submit='widgetCtrl.submit()'>
+            <legend>{{widgetCtrl.should_update_or_create}}</legend>
+            <!-- Name -->
+            <div class='form-group'>
+              <label class='col-sm-2 control-label' for='widget-name'>Name</label>
+              <div class='col-sm-10'>
+                <input class='input-medium form-control' id='widget-name' name='widget-name' ng-model='widgetCtrl.form_widget.name' placeholder='foo-bar' type='text'>
+              </div>
+            </div>
+            <!-- Price -->
+            <div class='form-group'>
+              <label class='col-sm-2 control-label' for='widget-price'>Price</label>
+              <div class='col-sm-10'>
+                <div class='input-group'>
+                  <div class='input-group-addon'>$</div>
+                  <input class='input-medium form-control' id='widget-price' name='widget-price' ng-model='widgetCtrl.form_widget.price' placeholder='0.00' type='text'>
+                </div>
+              </div>
+            </div>
+            <!-- Color -->
+            <div class='form-group'>
+              <label class='col-sm-2 control-label' for='widget-color'>Color</label>
+              <div class='col-sm-10'>
+                <select class='input-large form-control' id='widget-color' name='widget-color' ng-model='widgetCtrl.form_widget.color' ng-options="color for color in ['red','purple','black','green', 'magenta', 'white', 'depends on the viewing angle']">
+                  <option value=''>Pick a color</option>
+                </select>
+              </div>
+            </div>
+            <!-- Melts -->
+            <div class='form-group'>
+              <label class='col-sm-2 control-label' for='widget-properties-0'>Melts</label>
+              <input id='widget-properties-0' name='widget-properties' ng-model='widgetCtrl.form_widget.melts' type='checkbox' value='melts'>
+              <!-- Inventory -->
+            </div>
+            <div class='form-group'>
+              <label class='col-sm-2 control-label' for='widget-count'>Inventory</label>
+              <div class='col-sm-10'>
+                <input class='input-small form-control' id='widget-count' name='widget-count' ng-model='widgetCtrl.form_widget.inventory' placeholder='#?' type='text'>
+              </div>
+            </div>
+            <div class='form-group'>
+              <div class='col-sm-offset-2 col-sm-10'>
+                <button class='btn btn-default'>Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
